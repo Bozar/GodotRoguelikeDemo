@@ -19,3 +19,6 @@ margin_top = 560.0
 margin_right = 184.404
 custom_fonts/font = SubResource( 1 )
 text = "Hello world!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
