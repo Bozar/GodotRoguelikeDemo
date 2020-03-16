@@ -1,3 +1,5 @@
+# User defined ignores
+bin/
 
 # Godot-specific ignores
 .import/
