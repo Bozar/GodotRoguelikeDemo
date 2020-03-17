@@ -11,6 +11,7 @@ size = 24
 font_data = ExtResource( 1 )
 
 [node name="Control" type="Control"]
+modulate = Color( 0.670588, 0.698039, 0.74902, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {

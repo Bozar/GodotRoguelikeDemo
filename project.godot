@@ -24,3 +24,7 @@ config/icon="res://resource/icon.png"
 window/size/width=800
 window/size/resizable=false
 window/energy_saving/keep_screen_on=false
+
+[rendering]
+
+environment/default_clear_color=Color( 0.156863, 0.172549, 0.203922, 1 )

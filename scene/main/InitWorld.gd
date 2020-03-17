@@ -1,5 +1,6 @@
 extends Node2D
 
+
 const Wall := preload("res://sprite/Wall.tscn")
 const ArrowX := preload("res://sprite/ArrowX.tscn")
 const ArrowY := preload("res://sprite/ArrowY.tscn")
