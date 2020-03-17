@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Godot Roguelike Demo"
-run/main_scene="res://scene/Main.tscn"
+run/main_scene="res://scene/main/Main.tscn"
 config/icon="res://resource/icon.png"
 
 [display]
