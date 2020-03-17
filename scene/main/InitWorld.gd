@@ -1,8 +1,8 @@
 extends Node2D
 
-const wall_prefab := preload("res://scene/sprite/Wall.tscn")
-const arrow_x_prefab := preload("res://scene/sprite/ArrowX.tscn")
-const arrow_y_prefab := preload("res://scene/sprite/ArrowY.tscn")
+const wall_prefab := preload("res://sprite/Wall.tscn")
+const arrow_x_prefab := preload("res://sprite/ArrowX.tscn")
+const arrow_y_prefab := preload("res://sprite/ArrowY.tscn")
 
 const _start_x: int = 50
 const _start_y: int = 54
