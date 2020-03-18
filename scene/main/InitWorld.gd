@@ -14,7 +14,7 @@ const MAX_Y: int = 15
 const ARROW_MARGIN: int = 32
 
 
-func _ready():
+func _ready() -> void:
 	_init_wall_block()
 	_init_indicator()
 
