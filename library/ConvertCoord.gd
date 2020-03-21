@@ -18,3 +18,9 @@ func index_to_vector(x: int, y: int,
 	var y_vector: int = START_Y + STEP_Y * y + y_offset
 
 	return Vector2(x_vector, y_vector)
+
+
+func array_to_vector(array_coord: Array,
+		x_offset: int = 0, y_offset: int = 0) -> Vector2:
+
+	return index_to_vector(array_coord[0], array_coord[1], x_offset, y_offset)
