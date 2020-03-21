@@ -1,11 +1,15 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scene/gui/GUI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scene/main/InitWorld.gd" type="Script" id=2]
+[ext_resource path="res://scene/main/PlayerInput.gd" type="Script" id=3]
 
-[node name="Node2D" type="Node2D"]
+[node name="MainMode" type="Node2D"]
 
 [node name="Control" parent="." instance=ExtResource( 1 )]
 
 [node name="InitWorld" type="Node2D" parent="."]
 script = ExtResource( 2 )
+
+[node name="PlayerInput" type="Node2D" parent="."]
+script = ExtResource( 3 )
