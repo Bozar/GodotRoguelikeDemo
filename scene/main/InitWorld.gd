@@ -1,6 +1,8 @@
 extends Node2D
 
 
+signal sprite_created(new_sprite)
+
 const Player := preload("res://sprite/PC.tscn")
 const Dwarf := preload("res://sprite/Dwarf.tscn")
 const Floor := preload("res://sprite/Floor.tscn")
@@ -15,14 +17,18 @@ const MAX_Y: int = 15
 const ARROW_MARGIN: int = 32
 
 var _get_coord: ConvertCoord = ConvertCoord.new()
+var _initiated: bool = false
 
 
-func _ready() -> void:
-	_init_floor()
-	_init_wall()
-	_init_PC()
-	_init_dwarf()
-	_init_indicator()
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("init_world") and not _initiated:
+		_init_floor()
+		_init_wall()
+		_init_PC()
+		_init_dwarf()
+		_init_indicator()
+
+		_initiated = true
 
 
 func _init_dwarf() -> void:
@@ -58,3 +64,5 @@ func _create_sprite(prefab: PackedScene, x: int, y: int,
 	new_sprite = prefab.instance() as Sprite
 	new_sprite.position = _get_coord.index_to_vector(x, y, x_offset, y_offset)
 	add_child(new_sprite)
+
+	emit_signal("sprite_created", new_sprite)
