@@ -6,3 +6,5 @@ func _ready() -> void:
 
 	__ = $"InitWorld".connect("sprite_created", $"PCMove",
 			"_on_InitWorld_sprite_created")
+	__ = $"InitWorld".connect("sprite_created", $"Schedule",
+			"_on_InitWorld_sprite_created")
