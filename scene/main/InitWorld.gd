@@ -33,36 +33,36 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _init_dwarf() -> void:
 	for i in [[4, 5], [15, 6], [12, 13]]:
-		_create_sprite(Dwarf, i[0], i[1])
+		_create_sprite(Dwarf, "dwarf", i[0], i[1])
 
 
 func _init_PC() -> void:
-	_create_sprite(Player, 0, 0)
+	_create_sprite(Player, "pc", 0, 0)
 
 
 func _init_floor() -> void:
 	for i in range(MAX_X):
 		for j in range(MAX_Y):
-			_create_sprite(Floor, i, j)
+			_create_sprite(Floor, "floor", i, j)
 
 
 func _init_wall() -> void:
 	for i in range(9, 13):
 		for j in range(5, 9):
-			_create_sprite(Wall, i, j)
+			_create_sprite(Wall, "wall", i, j)
 
 
 func _init_indicator() -> void:
-	_create_sprite(ArrowX, 0, 12, -ARROW_MARGIN)
-	_create_sprite(ArrowY, 5, 0, 0, -ARROW_MARGIN)
+	_create_sprite(ArrowX, "arrow", 0, 12, -ARROW_MARGIN)
+	_create_sprite(ArrowY, "arrow", 5, 0, 0, -ARROW_MARGIN)
 
 
-func _create_sprite(prefab: PackedScene, x: int, y: int,
+func _create_sprite(prefab: PackedScene, group: String, x: int, y: int,
 		x_offset: int = 0, y_offset: int = 0) -> void:
-	var new_sprite: Sprite
 
-	new_sprite = prefab.instance() as Sprite
+	var new_sprite: Sprite = prefab.instance() as Sprite
 	new_sprite.position = _get_coord.index_to_vector(x, y, x_offset, y_offset)
-	add_child(new_sprite)
+	new_sprite.add_to_group(group)
 
+	add_child(new_sprite)
 	emit_signal("sprite_created", new_sprite)
