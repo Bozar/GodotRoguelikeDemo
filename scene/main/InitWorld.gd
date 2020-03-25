@@ -17,18 +17,17 @@ const MAX_Y: int = 15
 const ARROW_MARGIN: int = 32
 
 var _get_coord: ConvertCoord = ConvertCoord.new()
-var _initiated: bool = false
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("init_world") and not _initiated:
+	if event.is_action_pressed("init_world"):
 		_init_floor()
 		_init_wall()
 		_init_PC()
 		_init_dwarf()
 		_init_indicator()
 
-		_initiated = true
+		set_process_unhandled_input(false)
 
 
 func _init_dwarf() -> void:
