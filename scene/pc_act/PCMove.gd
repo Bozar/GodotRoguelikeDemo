@@ -3,6 +3,8 @@ extends Node2D
 
 const ConvertCoord := preload("res://library/ConvertCoord.gd")
 
+var ref_end_turn: FuncRef
+
 var _get_coord: ConvertCoord = ConvertCoord.new()
 var _pc: Sprite
 
@@ -23,8 +25,11 @@ func _unhandled_input(event) -> void:
 		y -= 1
 	elif event.is_action_pressed("move_down"):
 		y += 1
+	else:
+		return
 
 	_pc.position = _get_coord.index_to_vector(x, y)
+	ref_end_turn.call_func()
 
 
 func _on_InitWorld_sprite_created(new_sprite: Sprite) -> void:
