@@ -1,6 +1,8 @@
 extends Node2D
 
 
+signal turn_started(current_sprite)
+
 var _actors: Array = [null]
 var _pointer: int = 0
 
@@ -14,8 +16,7 @@ func _on_InitWorld_sprite_created(new_sprite: Sprite) -> void:
 
 func end_turn() -> void:
 	_goto_next()
-	print(_get_current().name)
-	# Emit a signal.
+	emit_signal("turn_started", _get_current())
 
 
 func _get_current() -> Sprite:

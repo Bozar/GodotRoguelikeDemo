@@ -9,10 +9,11 @@ var _get_coord: ConvertCoord = ConvertCoord.new()
 var _pc: Sprite
 
 
-func _unhandled_input(event) -> void:
-	if _pc == null:
-		return
+func _ready() -> void:
+	set_process_unhandled_input(false)
 
+
+func _unhandled_input(event) -> void:
 	var pos: Array = _get_coord.vector_to_array(_pc.position)
 	var x: int = pos[0]
 	var y: int = pos[1]
@@ -35,3 +36,11 @@ func _unhandled_input(event) -> void:
 func _on_InitWorld_sprite_created(new_sprite: Sprite) -> void:
 	if new_sprite.name == "PC":
 		_pc = new_sprite
+		set_process_unhandled_input(true)
+
+
+func _on_Schedule_turn_started(current_sprite: Sprite) -> void:
+	if current_sprite.is_in_group("pc"):
+		set_process_unhandled_input(true)
+	else:
+		set_process_unhandled_input(false)
