@@ -11,12 +11,10 @@ const ArrowX := preload("res://sprite/ArrowX.tscn")
 const ArrowY := preload("res://sprite/ArrowY.tscn")
 
 const ConvertCoord := preload("res://library/ConvertCoord.gd")
-
-const MAX_X: int = 21
-const MAX_Y: int = 15
-const ARROW_MARGIN: int = 32
+const DungeonSize := preload("res://library/DungeonSize.gd")
 
 var _get_coord: ConvertCoord = ConvertCoord.new()
+var _dungeon: DungeonSize = DungeonSize.new()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -40,8 +38,8 @@ func _init_PC() -> void:
 
 
 func _init_floor() -> void:
-	for i in range(MAX_X):
-		for j in range(MAX_Y):
+	for i in range(_dungeon.MAX_X):
+		for j in range(_dungeon.MAX_Y):
 			_create_sprite(Floor, "floor", i, j)
 
 
@@ -52,8 +50,8 @@ func _init_wall() -> void:
 
 
 func _init_indicator() -> void:
-	_create_sprite(ArrowX, "arrow", 0, 12, -ARROW_MARGIN)
-	_create_sprite(ArrowY, "arrow", 5, 0, 0, -ARROW_MARGIN)
+	_create_sprite(ArrowX, "arrow", 0, 12, -_dungeon.ARROW_MARGIN)
+	_create_sprite(ArrowY, "arrow", 5, 0, 0, -_dungeon.ARROW_MARGIN)
 
 
 func _create_sprite(prefab: PackedScene, group: String, x: int, y: int,
