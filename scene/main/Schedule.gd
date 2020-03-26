@@ -5,6 +5,7 @@ signal turn_started(current_sprite)
 
 var _actors: Array = [null]
 var _pointer: int = 0
+var _counter: int = 0
 
 
 func _on_InitWorld_sprite_created(new_sprite: Sprite) -> void:
@@ -16,6 +17,12 @@ func _on_InitWorld_sprite_created(new_sprite: Sprite) -> void:
 
 func end_turn() -> void:
 	_goto_next()
+
+	# Remove this block and _counter later. Count turns via GUI.
+	if _get_current().is_in_group("pc"):
+		_counter += 1
+		print("Turn: {0}".format([_counter]))
+
 	emit_signal("turn_started", _get_current())
 
 
