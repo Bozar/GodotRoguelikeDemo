@@ -3,9 +3,11 @@ extends Node2D
 
 const ConvertCoord := preload("res://library/ConvertCoord.gd")
 
-var ref_end_turn: FuncRef
-
 var _get_coord: ConvertCoord = ConvertCoord.new()
+
+var _ref_Schedule_end_turn: FuncRef
+var _ref_DungeonBoard_is_inside_dungeon: FuncRef
+
 var _pc: Sprite
 
 
@@ -29,8 +31,11 @@ func _unhandled_input(event) -> void:
 	else:
 		return
 
-	_pc.position = _get_coord.index_to_vector(x, y)
-	ref_end_turn.call_func()
+	if _ref_DungeonBoard_is_inside_dungeon.call_func(x, y):
+		_pc.position = _get_coord.index_to_vector(x, y)
+		_ref_Schedule_end_turn.call_func()
+	else:
+		print("bump")
 
 
 func _on_InitWorld_sprite_created(new_sprite: Sprite) -> void:

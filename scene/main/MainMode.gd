@@ -5,6 +5,7 @@ const NODE_INIT: String = "InitWorld"
 const NODE_PC: String = "PCMove"
 const NODE_NPC: String = "EnemyAI"
 const NODE_SCHEDULE: String = "Schedule"
+const NODE_DUNGEON: String = "DungeonBoard"
 
 
 func _ready() -> void:
@@ -35,6 +36,12 @@ func _set_signal() -> void:
 func _set_funcref() -> void:
 	var func_turn: String = "end_turn"
 
-	get_node(NODE_PC).ref_end_turn = funcref(get_node(NODE_SCHEDULE), func_turn)
-	get_node(NODE_NPC).ref_end_turn = funcref(get_node(NODE_SCHEDULE),
-			func_turn)
+	get_node(NODE_PC)._ref_Schedule_end_turn = funcref(
+			get_node(NODE_SCHEDULE), func_turn)
+	get_node(NODE_NPC)._ref_Schedule_end_turn = funcref(
+			get_node(NODE_SCHEDULE), func_turn)
+
+	var func_inside: String = "is_inside_dungeon"
+
+	get_node(NODE_PC)._ref_DungeonBoard_is_inside_dungeon = funcref(
+			get_node(NODE_DUNGEON), func_inside)
