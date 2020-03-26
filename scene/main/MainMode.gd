@@ -10,7 +10,7 @@ const NODE_DUNGEON: String = "DungeonBoard"
 
 func _ready() -> void:
 	_set_signal()
-	_set_funcref()
+	_set_node_ref()
 
 
 func _set_signal() -> void:
@@ -33,15 +33,13 @@ func _set_signal() -> void:
 			func_turn)
 
 
-func _set_funcref() -> void:
-	var func_turn: String = "end_turn"
+func _set_node_ref() -> void:
+	# var func_inside: String = "is_inside_dungeon"
 
-	get_node(NODE_PC)._ref_Schedule_end_turn = funcref(
-			get_node(NODE_SCHEDULE), func_turn)
-	get_node(NODE_NPC)._ref_Schedule_end_turn = funcref(
-			get_node(NODE_SCHEDULE), func_turn)
+	# get_node(NODE_PC)._ref_DungeonBoard_is_inside_dungeon = funcref(
+	# 		get_node(NODE_DUNGEON), func_inside)
 
-	var func_inside: String = "is_inside_dungeon"
+	get_node(NODE_PC)._ref_DungeonBoard = get_node(NODE_DUNGEON)
 
-	get_node(NODE_PC)._ref_DungeonBoard_is_inside_dungeon = funcref(
-			get_node(NODE_DUNGEON), func_inside)
+	get_node(NODE_PC)._ref_Schedule = get_node(NODE_SCHEDULE)
+	get_node(NODE_NPC)._ref_Schedule = get_node(NODE_SCHEDULE)

@@ -2,11 +2,13 @@ extends Node2D
 
 
 const ConvertCoord := preload("res://library/ConvertCoord.gd")
+const DungeonBoard := preload("res://scene/dungeon_board/DungeonBoard.gd")
+const Schedule := preload("res://scene/main/Schedule.gd")
 
 var _get_coord: ConvertCoord = ConvertCoord.new()
 
-var _ref_Schedule_end_turn: FuncRef
-var _ref_DungeonBoard_is_inside_dungeon: FuncRef
+var _ref_Schedule: Schedule
+var _ref_DungeonBoard: DungeonBoard
 
 var _pc: Sprite
 
@@ -31,9 +33,10 @@ func _unhandled_input(event) -> void:
 	else:
 		return
 
-	if _ref_DungeonBoard_is_inside_dungeon.call_func(x, y):
+	# if _ref_DungeonBoard_is_inside_dungeon.call_func(x, y):
+	if _ref_DungeonBoard.is_inside_dungeon(x, y):
 		_pc.position = _get_coord.index_to_vector(x, y)
-		_ref_Schedule_end_turn.call_func()
+		_ref_Schedule.end_turn()
 	else:
 		print("bump")
 
