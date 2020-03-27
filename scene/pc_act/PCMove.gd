@@ -5,8 +5,11 @@ const DungeonBoard := preload("res://scene/dungeon_board/DungeonBoard.gd")
 const Schedule := preload("res://scene/main/Schedule.gd")
 
 var _get_coord := preload("res://library/ConvertCoord.gd").new()
+var _group_name := preload("res://library/GroupName.gd").new()
+
 var _ref_Schedule: Schedule
 var _ref_DungeonBoard: DungeonBoard
+
 var _pc: Sprite
 
 
@@ -39,13 +42,13 @@ func _unhandled_input(event) -> void:
 
 
 func _on_InitWorld_sprite_created(new_sprite: Sprite) -> void:
-	if new_sprite.name == "PC":
+	if new_sprite.is_in_group(_group_name.PC):
 		_pc = new_sprite
 		set_process_unhandled_input(true)
 
 
 func _on_Schedule_turn_started(current_sprite: Sprite) -> void:
-	if current_sprite.is_in_group("pc"):
+	if current_sprite.is_in_group(_group_name.PC):
 		set_process_unhandled_input(true)
 	else:
 		set_process_unhandled_input(false)

@@ -4,6 +4,7 @@ extends Node2D
 signal turn_started(current_sprite)
 
 var _group_name := preload("res://library/GroupName.gd").new()
+
 var _actors: Array = [null]
 var _pointer: int = 0
 var _counter: int = 0
