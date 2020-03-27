@@ -1,15 +1,12 @@
 extends Node2D
 
 
-const ConvertCoord := preload("res://library/ConvertCoord.gd")
 const DungeonBoard := preload("res://scene/dungeon_board/DungeonBoard.gd")
 const Schedule := preload("res://scene/main/Schedule.gd")
 
-var _get_coord: ConvertCoord = ConvertCoord.new()
-
+var _get_coord := preload("res://library/ConvertCoord.gd").new()
 var _ref_Schedule: Schedule
 var _ref_DungeonBoard: DungeonBoard
-
 var _pc: Sprite
 
 

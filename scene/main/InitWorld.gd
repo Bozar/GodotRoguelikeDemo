@@ -10,11 +10,9 @@ const Wall := preload("res://sprite/Wall.tscn")
 const ArrowX := preload("res://sprite/ArrowX.tscn")
 const ArrowY := preload("res://sprite/ArrowY.tscn")
 
-const ConvertCoord := preload("res://library/ConvertCoord.gd")
-const DungeonSize := preload("res://library/DungeonSize.gd")
-
-var _get_coord: ConvertCoord = ConvertCoord.new()
-var _dungeon: DungeonSize = DungeonSize.new()
+var _get_coord := preload("res://library/ConvertCoord.gd").new()
+var _dungeon := preload("res://library/DungeonSize.gd").new()
+var _group_name := preload("res://library/GroupName.gd").new()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -30,28 +28,28 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _init_dwarf() -> void:
 	for i in [[4, 5], [15, 6], [12, 13]]:
-		_create_sprite(Dwarf, "dwarf", i[0], i[1])
+		_create_sprite(Dwarf, _group_name.DWARF, i[0], i[1])
 
 
 func _init_PC() -> void:
-	_create_sprite(Player, "pc", 0, 0)
+	_create_sprite(Player, _group_name.PC, 0, 0)
 
 
 func _init_floor() -> void:
 	for i in range(_dungeon.MAX_X):
 		for j in range(_dungeon.MAX_Y):
-			_create_sprite(Floor, "floor", i, j)
+			_create_sprite(Floor, _group_name.FLOOR, i, j)
 
 
 func _init_wall() -> void:
 	for i in range(9, 13):
 		for j in range(5, 9):
-			_create_sprite(Wall, "wall", i, j)
+			_create_sprite(Wall, _group_name.WALL, i, j)
 
 
 func _init_indicator() -> void:
-	_create_sprite(ArrowX, "arrow", 0, 12, -_dungeon.ARROW_MARGIN)
-	_create_sprite(ArrowY, "arrow", 5, 0, 0, -_dungeon.ARROW_MARGIN)
+	_create_sprite(ArrowX, _group_name.ARROW, 0, 12, -_dungeon.ARROW_MARGIN)
+	_create_sprite(ArrowY, _group_name.ARROW, 5, 0, 0, -_dungeon.ARROW_MARGIN)
 
 
 func _create_sprite(prefab: PackedScene, group: String, x: int, y: int,

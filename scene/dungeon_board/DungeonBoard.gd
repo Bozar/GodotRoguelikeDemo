@@ -1,9 +1,7 @@
 extends Node2D
 
 
-const DungeonSize := preload("res://library/DungeonSize.gd")
-
-var _dungeon: DungeonSize = DungeonSize.new()
+var _dungeon := preload("res://library/DungeonSize.gd").new()
 
 
 func is_inside_dungeon(x: int, y: int) -> bool:

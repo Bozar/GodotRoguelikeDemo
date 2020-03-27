@@ -1,9 +1,7 @@
 extends Node2D
 
 
-const Schedule := preload("res://scene/main/Schedule.gd")
-
-var _ref_Schedule: Schedule
+var _ref_Schedule := preload("res://scene/main/Schedule.gd").new()
 
 
 func _on_Schedule_turn_started(current_sprite: Sprite) -> void:
