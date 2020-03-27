@@ -6,6 +6,7 @@ const Schedule := preload("res://scene/main/Schedule.gd")
 
 var _get_coord := preload("res://library/ConvertCoord.gd").new()
 var _group_name := preload("res://library/GroupName.gd").new()
+var _input_name := preload("res://library/InputName.gd").new()
 
 var _ref_Schedule: Schedule
 var _ref_DungeonBoard: DungeonBoard
@@ -22,13 +23,13 @@ func _unhandled_input(event) -> void:
 	var x: int = pos[0]
 	var y: int = pos[1]
 
-	if event.is_action_pressed("move_left"):
+	if event.is_action_pressed(_input_name.MOVE_LEFT):
 		x -= 1
-	elif event.is_action_pressed("move_right"):
+	elif event.is_action_pressed(_input_name.MOVE_RIGHT):
 		x += 1
-	elif event.is_action_pressed("move_up"):
+	elif event.is_action_pressed(_input_name.MOVE_UP):
 		y -= 1
-	elif event.is_action_pressed("move_down"):
+	elif event.is_action_pressed(_input_name.MOVE_DOWN):
 		y += 1
 	else:
 		return

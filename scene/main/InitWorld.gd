@@ -13,10 +13,11 @@ const ArrowY := preload("res://sprite/ArrowY.tscn")
 var _get_coord := preload("res://library/ConvertCoord.gd").new()
 var _dungeon := preload("res://library/DungeonSize.gd").new()
 var _group_name := preload("res://library/GroupName.gd").new()
+var _input_name := preload("res://library/InputName.gd").new()
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("init_world"):
+	if event.is_action_pressed(_input_name.INIT_WORLD):
 		_init_floor()
 		_init_wall()
 		_init_PC()
