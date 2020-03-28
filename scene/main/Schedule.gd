@@ -10,13 +10,6 @@ var _pointer: int = 0
 var _counter: int = 0
 
 
-func _on_InitWorld_sprite_created(new_sprite: Sprite) -> void:
-	if new_sprite.is_in_group(_group_name.PC):
-		_actors[0] = new_sprite
-	elif new_sprite.is_in_group(_group_name.DWARF):
-		_actors.append(new_sprite)
-
-
 func end_turn() -> void:
 	_goto_next()
 
@@ -26,6 +19,13 @@ func end_turn() -> void:
 		print("Turn: {0}".format([_counter]))
 
 	emit_signal("turn_started", _get_current())
+
+
+func _on_InitWorld_sprite_created(new_sprite: Sprite) -> void:
+	if new_sprite.is_in_group(_group_name.PC):
+		_actors[0] = new_sprite
+	elif new_sprite.is_in_group(_group_name.DWARF):
+		_actors.append(new_sprite)
 
 
 func _get_current() -> Sprite:
