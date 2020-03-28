@@ -1,7 +1,7 @@
 extends Node2D
 
 
-const DungeonBoard := preload("res://scene/dungeon_board/DungeonBoard.gd")
+const DungeonBoard := preload("res://scene/main/DungeonBoard.gd")
 const Schedule := preload("res://scene/main/Schedule.gd")
 
 var _get_coord := preload("res://library/ConvertCoord.gd").new()
