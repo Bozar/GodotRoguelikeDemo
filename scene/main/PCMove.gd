@@ -32,8 +32,12 @@ func _unhandled_input(event: InputEvent) -> void:
 func _on_InitWorld_sprite_created(new_sprite: Sprite) -> void:
 	if new_sprite.is_in_group(_group_name.PC):
 		_pc = new_sprite
-		_set_node_ref()
 		set_process_unhandled_input(true)
+
+
+func _on_InitWorld_child_node_initialized() -> void:
+	get_node(PC_ATTACK)._ref_DungeonBoard = _ref_DungeonBoard
+	get_node(PC_ATTACK)._ref_Schedule = _ref_Schedule
 
 
 func _on_Schedule_turn_started(current_sprite: Sprite) -> void:
@@ -74,8 +78,3 @@ func _try_move(target: Array) -> bool:
 	else:
 		_pc.position = _get_coord.index_to_vector(x, y)
 		return true
-
-
-func _set_node_ref() -> void:
-	get_node(PC_ATTACK)._ref_DungeonBoard = _ref_DungeonBoard
-	get_node(PC_ATTACK)._ref_Schedule = _ref_Schedule

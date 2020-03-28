@@ -7,6 +7,10 @@ const NODE_NPC: String = "EnemyAI"
 const NODE_SCHEDULE: String = "Schedule"
 const NODE_DUNGEON: String = "DungeonBoard"
 
+var _signal_name: String
+var _func_name: String
+var _var_name: String
+
 
 func _ready() -> void:
 	_set_signal()
@@ -14,34 +18,37 @@ func _ready() -> void:
 
 
 func _set_signal() -> void:
-	var __
+	_signal_name = "sprite_created"
+	_func_name = "_on_InitWorld_sprite_created"
+	_connect(NODE_INIT, NODE_PC_MOVE)
+	_connect(NODE_INIT, NODE_SCHEDULE)
+	_connect(NODE_INIT, NODE_DUNGEON)
 
-	var signal_sprite: String = "sprite_created"
-	var func_sprite: String = "_on_InitWorld_sprite_created"
+	_signal_name = "child_node_initialized"
+	_func_name = "_on_InitWorld_child_node_initialized"
+	_connect(NODE_INIT, NODE_PC_MOVE)
 
-	__ = get_node(NODE_INIT).connect(signal_sprite, get_node(NODE_PC_MOVE),
-			func_sprite)
-	__ = get_node(NODE_INIT).connect(signal_sprite, get_node(NODE_SCHEDULE),
-			func_sprite)
-	__ = get_node(NODE_INIT).connect(signal_sprite, get_node(NODE_DUNGEON),
-			func_sprite)
+	_signal_name = "turn_started"
+	_func_name = "_on_Schedule_turn_started"
+	_connect(NODE_SCHEDULE, NODE_PC_MOVE)
+	_connect(NODE_SCHEDULE, NODE_NPC)
 
-	var signal_turn: String = "turn_started"
-	var func_turn: String = "_on_Schedule_turn_started"
 
-	__ = get_node(NODE_SCHEDULE).connect(signal_turn, get_node(NODE_PC_MOVE),
-			func_turn)
-	__ = get_node(NODE_SCHEDULE).connect(signal_turn, get_node(NODE_NPC),
-			func_turn)
-
+func _connect(source_node: String, target_node: String) -> void:
+	var __ = get_node(source_node).connect(_signal_name,
+			get_node(target_node), _func_name)
 
 func _set_node_ref() -> void:
-	# var func_inside: String = "is_inside_dungeon"
-
 	# get_node(NODE_PC_MOVE)._ref_DungeonBoard_is_inside_dungeon = funcref(
-	# 		get_node(NODE_DUNGEON), func_inside)
+	# 		get_node(NODE_DUNGEON), "is_inside_dungeon")
 
-	get_node(NODE_PC_MOVE)._ref_DungeonBoard = get_node(NODE_DUNGEON)
+	_var_name = "_ref_DungeonBoard"
+	_ref(NODE_PC_MOVE, NODE_DUNGEON)
 
-	get_node(NODE_PC_MOVE)._ref_Schedule = get_node(NODE_SCHEDULE)
-	get_node(NODE_NPC)._ref_Schedule = get_node(NODE_SCHEDULE)
+	_var_name = "_ref_Schedule"
+	_ref(NODE_PC_MOVE, NODE_SCHEDULE)
+	_ref(NODE_NPC, NODE_SCHEDULE)
+
+
+func _ref(source_node: String, target_node: String) -> void:
+	get_node(source_node)[_var_name] = get_node(target_node)
