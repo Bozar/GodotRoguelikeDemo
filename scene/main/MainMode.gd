@@ -23,6 +23,8 @@ func _set_signal() -> void:
 			func_sprite)
 	__ = get_node(NODE_INIT).connect(signal_sprite, get_node(NODE_SCHEDULE),
 			func_sprite)
+	__ = get_node(NODE_INIT).connect(signal_sprite, get_node(NODE_DUNGEON),
+			func_sprite)
 
 	var signal_turn: String = "turn_started"
 	var func_turn: String = "_on_Schedule_turn_started"

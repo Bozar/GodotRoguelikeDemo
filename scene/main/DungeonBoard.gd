@@ -3,12 +3,28 @@ extends Node2D
 
 var _dungeon := preload("res://library/DungeonSize.gd").new()
 var _group_name := preload("res://library/GroupName.gd").new()
+var _coord := preload("res://library/ConvertCoord.gd").new()
 # <string__group_name, <int__column, array__sprite>>
 var _sprite_dict: Dictionary
 
 
 func _ready() -> void:
 	_init_dict()
+
+
+func _on_InitWorld_sprite_created(new_sprite: Sprite) -> void:
+	var pos: Array
+	var group: String
+
+	if new_sprite.is_in_group(_group_name.DWARF):
+		group = _group_name.DWARF
+	elif new_sprite.is_in_group(_group_name.WALL):
+		group = _group_name.WALL
+	else:
+		return
+
+	pos = _coord.vector_to_array(new_sprite.position)
+	_sprite_dict[group][pos[0]][pos[1]] = new_sprite
 
 
 func is_inside_dungeon(x: int, y: int) -> bool:
