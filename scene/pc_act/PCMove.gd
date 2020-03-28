@@ -34,12 +34,18 @@ func _unhandled_input(event) -> void:
 	else:
 		return
 
-	# if _ref_DungeonBoard_is_inside_dungeon.call_func(x, y):
-	if _ref_DungeonBoard.is_inside_dungeon(x, y):
+	# if not _ref_DungeonBoard_is_inside_dungeon.call_func(x, y):
+	if not _ref_DungeonBoard.is_inside_dungeon(x, y):
+		print("bump")
+		return
+
+	if _ref_DungeonBoard.has_sprite(_group_name.WALL, x, y):
+		print("wall")
+	elif _ref_DungeonBoard.has_sprite(_group_name.DWARF, x, y):
+		print("dwarf")
+	else:
 		_pc.position = _get_coord.index_to_vector(x, y)
 		_ref_Schedule.end_turn()
-	else:
-		print("bump")
 
 
 func _on_InitWorld_sprite_created(new_sprite: Sprite) -> void:

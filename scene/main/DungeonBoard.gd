@@ -32,6 +32,10 @@ func is_inside_dungeon(x: int, y: int) -> bool:
 			and (y > -1) and (y < _dungeon.MAX_Y)
 
 
+func has_sprite(group_name: String, x: int, y: int) -> bool:
+	return get_sprite(group_name, x, y) != null
+
+
 func get_sprite(group_name: String, x: int, y: int) -> Sprite:
 	if not is_inside_dungeon(x, y):
 		return null
