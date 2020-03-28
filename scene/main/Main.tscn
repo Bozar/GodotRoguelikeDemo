@@ -5,7 +5,7 @@
 [ext_resource path="res://scene/main/Schedule.gd" type="Script" id=3]
 [ext_resource path="res://scene/main/MainMode.gd" type="Script" id=4]
 [ext_resource path="res://scene/pc_act/PCMove.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scene/npc_act/npc_act.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scene/main/EnemyAI.gd" type="Script" id=6]
 [ext_resource path="res://scene/main/DungeonBoard.gd" type="Script" id=7]
 
 [node name="MainMode" type="Node2D"]
@@ -21,7 +21,8 @@ script = ExtResource( 2 )
 [node name="Schedule" type="Node2D" parent="."]
 script = ExtResource( 3 )
 
-[node name="EnemyAI" parent="." instance=ExtResource( 6 )]
-
 [node name="DungeonBoard" type="Node2D" parent="."]
 script = ExtResource( 7 )
+
+[node name="EnemyAI" type="Node2D" parent="."]
+script = ExtResource( 6 )
