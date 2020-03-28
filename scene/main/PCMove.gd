@@ -45,6 +45,7 @@ func _unhandled_input(event) -> void:
 		print("dwarf")
 	else:
 		_pc.position = _get_coord.index_to_vector(x, y)
+		set_process_unhandled_input(false)
 		_ref_Schedule.end_turn()
 
 
@@ -57,5 +58,3 @@ func _on_InitWorld_sprite_created(new_sprite: Sprite) -> void:
 func _on_Schedule_turn_started(current_sprite: Sprite) -> void:
 	if current_sprite.is_in_group(_group_name.PC):
 		set_process_unhandled_input(true)
-	else:
-		set_process_unhandled_input(false)
