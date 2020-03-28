@@ -3,7 +3,6 @@ extends Node2D
 
 const NODE_INIT: String = "InitWorld"
 const NODE_PC_MOVE: String = "PCMove"
-const NODE_PC_ATTACK: String = "PCMove/PCAttack"
 const NODE_NPC: String = "EnemyAI"
 const NODE_SCHEDULE: String = "Schedule"
 const NODE_DUNGEON: String = "DungeonBoard"
@@ -43,8 +42,6 @@ func _set_node_ref() -> void:
 	# 		get_node(NODE_DUNGEON), func_inside)
 
 	get_node(NODE_PC_MOVE)._ref_DungeonBoard = get_node(NODE_DUNGEON)
-	get_node(NODE_PC_ATTACK)._ref_DungeonBoard = get_node(NODE_DUNGEON)
 
 	get_node(NODE_PC_MOVE)._ref_Schedule = get_node(NODE_SCHEDULE)
-	get_node(NODE_PC_ATTACK)._ref_Schedule = get_node(NODE_SCHEDULE)
 	get_node(NODE_NPC)._ref_Schedule = get_node(NODE_SCHEDULE)
