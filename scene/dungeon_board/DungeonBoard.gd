@@ -2,8 +2,31 @@ extends Node2D
 
 
 var _dungeon := preload("res://library/DungeonSize.gd").new()
+var _group_name := preload("res://library/GroupName.gd").new()
+# <string__group_name, <int__column, array__sprite>>
+var _sprite_dict: Dictionary
+
+
+func _ready() -> void:
+	_init_dict()
 
 
 func is_inside_dungeon(x: int, y: int) -> bool:
 	return (x > -1) and (x < _dungeon.MAX_X) \
 			and (y > -1) and (y < _dungeon.MAX_Y)
+
+
+func get_sprite(group_name: String, x: int, y: int) -> Sprite:
+	if not is_inside_dungeon(x, y):
+		return null
+	return _sprite_dict[group_name][x][y]
+
+
+func _init_dict() -> void:
+	var groups = [_group_name.DWARF, _group_name.WALL]
+
+	for g in groups:
+		_sprite_dict[g] = {}
+		for x in range(_dungeon.MAX_X):
+			_sprite_dict[g][x] = []
+			_sprite_dict[g][x].resize(_dungeon.MAX_Y)
