@@ -1,12 +1,18 @@
 extends Node2D
 
 
-const NODE_SOURCE: String = ""
-const NODE_TARGET: String = ""
+# "/root/MainScene/"
+var _path_to_self: String
+# [signal_name, func_name, source_node, target_node]
+var _signal_bind: Array
+# [target_var_name, source_node, target_node]
+var _func_ref: Array
 
-var _signal_name: String
-var _func_name: String
-var _var_name: String
+
+func _init(_path: String, _signal: Array, _func: Array) -> void:
+	_path_to_self = _path
+	_signal_bind = _signal
+	_func_ref = _func
 
 
 func _ready() -> void:
@@ -15,21 +21,21 @@ func _ready() -> void:
 
 
 func _set_signal() -> void:
-	_signal_name = ""
-	_func_name = ""
+	var __
 
-	_connect(NODE_SOURCE, NODE_TARGET)
+	for s in _signal_bind:
+		# [signal_name, func_name, source_node, target_node]
+		for i in range(3, len(s)):
+			__ = get_node(_get_path(s[2])).connect(s[0],
+					get_node(_get_path(s[i])), s[1])
 
-
-func _connect(source_node: String, target_node: String) -> void:
-	var __ = get_node(source_node).connect(_signal_name,
-			get_node(target_node), _func_name)
 
 func _set_node_ref() -> void:
-	_var_name = ""
+	for n in _func_ref:
+		# [target_var_name, source_node, target_node]
+		for i in range(2, len(n)):
+			get_node(_get_path(n[i]))[n[0]] = get_node(_get_path(n[1]))
 
-	_ref(NODE_SOURCE, NODE_TARGET)
 
-
-func _ref(source_node: String, target_node: String) -> void:
-	get_node(source_node)[_var_name] = get_node(target_node)
+func _get_path(path_to_node: String) -> String:
+	return "{0}{1}".format([_path_to_self, path_to_node])
