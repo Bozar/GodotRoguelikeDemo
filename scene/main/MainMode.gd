@@ -26,7 +26,7 @@ const SIGNAL_BIND: Array = [
 	],
 ]
 
-const FUNC_REF: Array = [
+const NODE_REF: Array = [
 	[
 		"_ref_DungeonBoard",
 		NODE_DUNGEON,
@@ -40,5 +40,5 @@ const FUNC_REF: Array = [
 ]
 
 
-func _init().(PATH_TO_SELF, SIGNAL_BIND, FUNC_REF) -> void:
+func _init().(PATH_TO_SELF, SIGNAL_BIND, NODE_REF) -> void:
 	pass

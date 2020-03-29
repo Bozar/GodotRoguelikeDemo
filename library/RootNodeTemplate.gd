@@ -6,13 +6,13 @@ var _path_to_self: String
 # [signal_name, func_name, source_node, target_node]
 var _signal_bind: Array
 # [target_var_name, source_node, target_node]
-var _func_ref: Array
+var _node_ref: Array
 
 
-func _init(_path: String, _signal: Array, _func: Array) -> void:
+func _init(_path: String, _signal: Array, _node: Array) -> void:
 	_path_to_self = _path
 	_signal_bind = _signal
-	_func_ref = _func
+	_node_ref = _node
 
 
 func _ready() -> void:
@@ -31,7 +31,7 @@ func _set_signal() -> void:
 
 
 func _set_node_ref() -> void:
-	for n in _func_ref:
+	for n in _node_ref:
 		# [target_var_name, source_node, target_node]
 		for i in range(2, len(n)):
 			get_node(_get_path(n[i]))[n[0]] = get_node(_get_path(n[1]))
