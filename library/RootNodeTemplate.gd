@@ -1,7 +1,7 @@
 extends Node2D
 
 
-# "/root/MainScene/"
+# "/root/MainScene"
 var _path_to_self: String
 # [signal_name, func_name, source_node, target_node]
 var _signal_bind: Array
@@ -9,15 +9,19 @@ var _signal_bind: Array
 var _node_ref: Array
 
 
-func _init(_path: String, _signal: Array, _node: Array) -> void:
-	_path_to_self = _path
+func _init(_signal: Array, _node: Array) -> void:
 	_signal_bind = _signal
 	_node_ref = _node
 
 
 func _ready() -> void:
+	_set_path()
 	_set_signal()
 	_set_node_ref()
+
+
+func _set_path() -> void:
+	_path_to_self = get_path()
 
 
 func _set_signal() -> void:
@@ -38,4 +42,4 @@ func _set_node_ref() -> void:
 
 
 func _get_path(path_to_node: String) -> String:
-	return "{0}{1}".format([_path_to_self, path_to_node])
+	return "{0}/{1}".format([_path_to_self, path_to_node])
