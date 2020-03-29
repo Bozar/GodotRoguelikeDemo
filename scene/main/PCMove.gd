@@ -6,7 +6,7 @@ const Schedule := preload("res://scene/main/Schedule.gd")
 
 const PC_ATTACK: String = "PCAttack"
 
-var _get_coord := preload("res://library/ConvertCoord.gd").new()
+var _coord := preload("res://library/ConvertCoord.gd").new()
 var _group_name := preload("res://library/GroupName.gd").new()
 var _input_name := preload("res://library/InputName.gd").new()
 
@@ -21,10 +21,10 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	var pos: Array = _get_coord.vector_to_array(_pc.position)
-	var target: Array = _get_new_position(event, pos)
+	var source: Array = _coord.vector_to_array(_pc.position)
+	var target: Array = _get_new_position(event, source)
 
-	if (len(target) == 2) and _try_move(target):
+	if _is_wait(event) or (target[0] and _try_move(target[1], target[2])):
 		set_process_unhandled_input(false)
 		_ref_Schedule.end_turn()
 
@@ -45,6 +45,13 @@ func _on_Schedule_turn_started(current_sprite: Sprite) -> void:
 		set_process_unhandled_input(true)
 
 
+func _is_wait(event: InputEvent) -> bool:
+	if event.is_action_pressed(_input_name.WAIT):
+		print("wait")
+		return true
+	return false
+
+
 func _get_new_position(event: InputEvent, source: Array) -> Array:
 	var x: int = source[0]
 	var y: int = source[1]
@@ -58,14 +65,11 @@ func _get_new_position(event: InputEvent, source: Array) -> Array:
 	elif event.is_action_pressed(_input_name.MOVE_DOWN):
 		y += 1
 	else:
-		return []
-	return [x, y]
+		return [false]
+	return [true, x, y]
 
 
-func _try_move(target: Array) -> bool:
-	var x: int = target[0]
-	var y: int = target[1]
-
+func _try_move(x: int, y: int) -> bool:
 	# if not _ref_DungeonBoard_is_inside_dungeon.call_func(x, y):
 	if not _ref_DungeonBoard.is_inside_dungeon(x, y):
 		print("bump")
@@ -76,5 +80,5 @@ func _try_move(target: Array) -> bool:
 	elif _ref_DungeonBoard.has_sprite(_group_name.DWARF, x, y):
 		return get_node(PC_ATTACK).try_attack(_group_name.DWARF, x, y)
 	else:
-		_pc.position = _get_coord.index_to_vector(x, y)
+		_pc.position = _coord.index_to_vector(x, y)
 		return true
