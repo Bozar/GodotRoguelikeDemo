@@ -13,7 +13,7 @@ const SIGNAL_BIND: Array = [
 	[
 		"sprite_created", "_on_InitWorld_sprite_created",
 		NODE_INIT,
-		NODE_PC_MOVE, NODE_SCHEDULE, NODE_DUNGEON,
+		NODE_PC_MOVE, NODE_NPC, NODE_SCHEDULE, NODE_DUNGEON,
 	],
 	[
 		"turn_started", "_on_Schedule_turn_started",
