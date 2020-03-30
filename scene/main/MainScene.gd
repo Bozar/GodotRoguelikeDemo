@@ -20,13 +20,18 @@ const SIGNAL_BIND: Array = [
 		NODE_SCHEDULE,
 		NODE_PC_MOVE, NODE_NPC,
 	],
+	[
+		"sprite_removed", "_on_RemoveObject_sprite_removed",
+		NODE_REMOVE,
+		NODE_DUNGEON,
+	],
 ]
 
 const NODE_REF: Array = [
 	[
 		"_ref_DungeonBoard",
 		NODE_DUNGEON,
-		NODE_PC_MOVE, NODE_PC_ATTACK,
+		NODE_PC_MOVE, NODE_PC_ATTACK, NODE_REMOVE,
 	],
 	[
 		"_ref_Schedule",

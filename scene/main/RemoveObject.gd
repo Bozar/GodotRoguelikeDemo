@@ -1,5 +1,13 @@
 extends Node2D
 
 
+signal sprite_removed(sprite, group_name, x, y)
+
+const DungeonBoard := preload("res://scene/main/DungeonBoard.gd")
+
+var _ref_DungeonBoard: DungeonBoard
+
+
 func remove(group_name: String, x: int, y: int) -> void:
-	print("remove: {0}: {1}, {2}".format([group_name, x, y]))
+	var sprite: Sprite = _ref_DungeonBoard.get_sprite(group_name, x, y)
+	emit_signal("sprite_removed", sprite, group_name, x, y)
