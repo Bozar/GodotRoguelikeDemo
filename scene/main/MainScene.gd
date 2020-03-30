@@ -7,6 +7,7 @@ const NODE_PC_ATTACK: String = "PCMove/PCAttack"
 const NODE_NPC: String = "EnemyAI"
 const NODE_SCHEDULE: String = "Schedule"
 const NODE_DUNGEON: String = "DungeonBoard"
+const NODE_REMOVE: String = "RemoveObject"
 
 const SIGNAL_BIND: Array = [
 	[
@@ -31,6 +32,11 @@ const NODE_REF: Array = [
 		"_ref_Schedule",
 		NODE_SCHEDULE,
 		NODE_PC_MOVE, NODE_NPC,
+	],
+	[
+		"_ref_RemoveObject",
+		NODE_REMOVE,
+		NODE_PC_ATTACK,
 	],
 ]
 
