@@ -35,11 +35,6 @@ func _on_InitWorld_sprite_created(new_sprite: Sprite) -> void:
 		set_process_unhandled_input(true)
 
 
-func _on_InitWorld_child_node_initialized() -> void:
-	get_node(PC_ATTACK)._ref_DungeonBoard = _ref_DungeonBoard
-	get_node(PC_ATTACK)._ref_Schedule = _ref_Schedule
-
-
 func _on_Schedule_turn_started(current_sprite: Sprite) -> void:
 	if current_sprite.is_in_group(_group_name.PC):
 		set_process_unhandled_input(true)

@@ -2,7 +2,6 @@ extends Node2D
 
 
 signal sprite_created(new_sprite)
-signal child_node_initialized
 
 const Player := preload("res://sprite/PC.tscn")
 const Dwarf := preload("res://sprite/Dwarf.tscn")
@@ -24,7 +23,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		_init_PC()
 		_init_dwarf()
 		_init_indicator()
-		emit_signal("child_node_initialized")
 
 		set_process_unhandled_input(false)
 
