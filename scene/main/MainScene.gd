@@ -23,7 +23,7 @@ const SIGNAL_BIND: Array = [
 	[
 		"sprite_removed", "_on_RemoveObject_sprite_removed",
 		NODE_REMOVE,
-		NODE_DUNGEON,
+		NODE_DUNGEON, NODE_SCHEDULE,
 	],
 ]
 

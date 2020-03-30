@@ -1,7 +1,7 @@
 extends Node2D
 
 
-signal sprite_removed(sprite, group_name, x, y)
+signal sprite_removed(remove_sprite, group_name, x, y)
 
 const DungeonBoard := preload("res://scene/main/DungeonBoard.gd")
 
