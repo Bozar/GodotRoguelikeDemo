@@ -31,4 +31,4 @@ func _pc_is_close(source: Sprite, target: Sprite) -> bool:
 	var delta_x: int = abs(source_pos[0] - target_pos[0]) as int
 	var delta_y: int = abs(source_pos[1] - target_pos[1]) as int
 
-	return max(delta_x, delta_y) < 2
+	return delta_x + delta_y < 2
