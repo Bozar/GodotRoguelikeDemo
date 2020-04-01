@@ -1,8 +1,6 @@
 extends "res://library/RootNodeTemplate.gd"
 
 
-const PATH_TO_MAIN: String = "/root/MainScene"
-
 const NODE_INIT: String = "InitWorld"
 const NODE_PC_MOVE: String = "PCMove"
 const NODE_PC_ATTACK: String = "PCMove/PCAttack"
@@ -48,5 +46,5 @@ const NODE_REF: Array = [
 ]
 
 
-func _init().(PATH_TO_MAIN, SIGNAL_BIND, NODE_REF) -> void:
+func _init().(SIGNAL_BIND, NODE_REF) -> void:
 	pass

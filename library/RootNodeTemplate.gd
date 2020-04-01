@@ -2,22 +2,26 @@ extends Node2D
 
 
 # "/root/MainScene"
-var _path_to_main: String
+var _path_to_self: String
 # [signal_name, func_name, source_node, target_node]
 var _signal_bind: Array
 # [target_var_name, source_node, target_node]
 var _node_ref: Array
 
 
-func _init(set_path, set_signal: Array, set_node: Array) -> void:
-	_path_to_main = set_path
-	_signal_bind = set_signal
-	_node_ref = set_node
+func _init(_signal: Array, _node: Array) -> void:
+	_signal_bind = _signal
+	_node_ref = _node
 
 
 func _ready() -> void:
+	_set_path()
 	_set_signal()
 	_set_node_ref()
+
+
+func _set_path() -> void:
+	_path_to_self = get_path()
 
 
 func _set_signal() -> void:
@@ -38,4 +42,4 @@ func _set_node_ref() -> void:
 
 
 func _get_path(path_to_node: String) -> String:
-	return "{0}/{1}".format([_path_to_main, path_to_node])
+	return "{0}/{1}".format([_path_to_self, path_to_node])
