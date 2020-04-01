@@ -30,12 +30,17 @@ margin_bottom = 600.0
 [node name="Turn" parent="MainHBox/SidebarVBox" instance=ExtResource( 1 )]
 margin_top = 0.0
 margin_right = 180.0
-margin_bottom = 235.0
+margin_bottom = 31.0
 rect_min_size = Vector2( 180, 0 )
-text = "Turn: 34/42
-Orb: 12
+size_flags_vertical = 2
+text = "Turn: 34/42"
+autowrap = true
 
-Power: 5
-==DANGER==
-==============="
+[node name="Help" parent="MainHBox/SidebarVBox" instance=ExtResource( 1 )]
+margin_top = 569.0
+margin_right = 180.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 180, 0 )
+text = "RL Demo"
+align = 2
 autowrap = true
