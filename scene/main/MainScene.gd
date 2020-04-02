@@ -20,7 +20,7 @@ const SIGNAL_BIND: Array = [
 	[
 		"turn_started", "_on_Schedule_turn_started",
 		NODE_SCHEDULE,
-		NODE_PC_MOVE, NODE_NPC, NODE_SIDEBAR,
+		NODE_PC_MOVE, NODE_NPC, NODE_SIDEBAR, NODE_MODELINE
 	],
 	[
 		"turn_ended", "_on_Schedule_turn_ended",
@@ -35,6 +35,11 @@ const SIGNAL_BIND: Array = [
 	[
 		"enemy_warned", "_on_EnemyAI_enemy_warned",
 		NODE_NPC,
+		NODE_MODELINE,
+	],
+	[
+		"pc_moved", "_on_PCMove_pc_moved",
+		NODE_PC_MOVE,
 		NODE_MODELINE,
 	],
 ]

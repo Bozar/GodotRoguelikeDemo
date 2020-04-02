@@ -1,6 +1,8 @@
 extends Node2D
 
 
+signal pc_moved(message)
+
 const DungeonBoard := preload("res://scene/main/DungeonBoard.gd")
 const Schedule := preload("res://scene/main/Schedule.gd")
 
@@ -42,7 +44,6 @@ func _on_Schedule_turn_started(current_sprite: Sprite) -> void:
 
 func _is_wait(event: InputEvent) -> bool:
 	if event.is_action_pressed(_new_InputName.WAIT):
-		print("wait")
 		return true
 	return false
 
@@ -67,10 +68,10 @@ func _get_new_position(event: InputEvent, source: Array) -> Array:
 func _try_move(x: int, y: int) -> bool:
 	# if not _ref_DungeonBoard_is_inside_dungeon.call_func(x, y):
 	if not _ref_DungeonBoard.is_inside_dungeon(x, y):
-		print("bump")
+		emit_signal("pc_moved", "You cannot leave the map.")
 		return false
 	elif _ref_DungeonBoard.has_sprite(_new_GroupName.WALL, x, y):
-		print("wall")
+		emit_signal("pc_moved", "You bump into wall.")
 		return false
 	elif _ref_DungeonBoard.has_sprite(_new_GroupName.DWARF, x, y):
 		return get_node(PC_ATTACK).try_attack(_new_GroupName.DWARF, x, y)
