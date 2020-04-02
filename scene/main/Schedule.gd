@@ -7,17 +7,10 @@ var _new_GroupName := preload("res://library/GroupName.gd").new()
 
 var _actors: Array = [null]
 var _pointer: int = 0
-var _counter: int = 0
 
 
 func end_turn() -> void:
 	_goto_next()
-
-	# Remove this block and _counter later. Count turns via GUI.
-	if _get_current().is_in_group(_new_GroupName.PC):
-		_counter += 1
-		print("Turn: {0}".format([_counter]))
-
 	emit_signal("turn_started", _get_current())
 
 

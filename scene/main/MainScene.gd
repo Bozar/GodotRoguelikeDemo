@@ -8,6 +8,8 @@ const NODE_NPC: String = "EnemyAI"
 const NODE_SCHEDULE: String = "Schedule"
 const NODE_DUNGEON: String = "DungeonBoard"
 const NODE_REMOVE: String = "RemoveObject"
+const NODE_SIDEBAR: String = "MainGUI/MainHBox/SidebarVBox"
+const NODE_MODELINE: String = "MainGUI/MainHBox/Modeline"
 
 const SIGNAL_BIND: Array = [
 	[
@@ -18,7 +20,7 @@ const SIGNAL_BIND: Array = [
 	[
 		"turn_started", "_on_Schedule_turn_started",
 		NODE_SCHEDULE,
-		NODE_PC_MOVE, NODE_NPC,
+		NODE_PC_MOVE, NODE_NPC, NODE_SIDEBAR,
 	],
 	[
 		"sprite_removed", "_on_RemoveObject_sprite_removed",
