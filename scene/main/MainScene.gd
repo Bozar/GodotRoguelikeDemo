@@ -23,9 +23,19 @@ const SIGNAL_BIND: Array = [
 		NODE_PC_MOVE, NODE_NPC, NODE_SIDEBAR,
 	],
 	[
+		"turn_ended", "_on_Schedule_turn_ended",
+		NODE_SCHEDULE,
+		NODE_MODELINE,
+	],
+	[
 		"sprite_removed", "_on_RemoveObject_sprite_removed",
 		NODE_REMOVE,
 		NODE_DUNGEON, NODE_SCHEDULE,
+	],
+	[
+		"enemy_warned", "_on_EnemyAI_enemy_warned",
+		NODE_NPC,
+		NODE_MODELINE,
 	],
 ]
 

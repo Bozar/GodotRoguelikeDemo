@@ -2,6 +2,7 @@ extends Node2D
 
 
 signal turn_started(current_sprite)
+signal turn_ended(current_sprite)
 
 var _new_GroupName := preload("res://library/GroupName.gd").new()
 
@@ -10,6 +11,7 @@ var _pointer: int = 0
 
 
 func end_turn() -> void:
+	emit_signal("turn_ended", _get_current())
 	_goto_next()
 	emit_signal("turn_started", _get_current())
 
