@@ -7,6 +7,7 @@ const DungeonBoard := preload("res://scene/main/DungeonBoard.gd")
 const Schedule := preload("res://scene/main/Schedule.gd")
 
 const PC_ATTACK: String = "PCAttack"
+const RELOAD_GAME: String = "ReloadGame"
 
 var _ref_DungeonBoard: DungeonBoard
 var _ref_Schedule: Schedule
@@ -30,6 +31,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		set_process_unhandled_input(false)
 		_ref_Schedule.end_turn()
 		emit_signal("pc_moved", "You wait one turn.")
+	elif _is_reload_input(event):
+		get_node(RELOAD_GAME).reload()
 	elif target[0]:
 		_try_move(target[1], target[2])
 
@@ -47,6 +50,12 @@ func _on_Schedule_turn_started(current_sprite: Sprite) -> void:
 
 func _is_wait_input(event: InputEvent) -> bool:
 	if event.is_action_pressed(_new_InputName.WAIT):
+		return true
+	return false
+
+
+func _is_reload_input(event: InputEvent) -> bool:
+	if event.is_action_pressed(_new_InputName.RELOAD):
 		return true
 	return false
 

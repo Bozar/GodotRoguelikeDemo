@@ -6,7 +6,7 @@ var _has_text: bool = false
 
 
 func _ready() -> void:
-	text = ""
+	text = "Press Space to start game."
 
 
 func _on_Schedule_turn_started(current_sprite: Sprite) -> void:
