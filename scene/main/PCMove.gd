@@ -24,11 +24,14 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	var source: Array = _new_ConvertCoord.vector_to_array(_pc.position)
-	var target: Array = _get_new_position(event, source)
+	var target: Array = _is_move_input(event, source)
 
-	if _is_wait(event) or (target[0] and _try_move(target[1], target[2])):
+	if _is_wait_input(event):
 		set_process_unhandled_input(false)
 		_ref_Schedule.end_turn()
+		emit_signal("pc_moved", "You wait one turn.")
+	elif target[0]:
+		_try_move(target[1], target[2])
 
 
 func _on_InitWorld_sprite_created(new_sprite: Sprite) -> void:
@@ -42,13 +45,13 @@ func _on_Schedule_turn_started(current_sprite: Sprite) -> void:
 		set_process_unhandled_input(true)
 
 
-func _is_wait(event: InputEvent) -> bool:
+func _is_wait_input(event: InputEvent) -> bool:
 	if event.is_action_pressed(_new_InputName.WAIT):
 		return true
 	return false
 
 
-func _get_new_position(event: InputEvent, source: Array) -> Array:
+func _is_move_input(event: InputEvent, source: Array) -> Array:
 	var x: int = source[0]
 	var y: int = source[1]
 
@@ -65,16 +68,18 @@ func _get_new_position(event: InputEvent, source: Array) -> Array:
 	return [true, x, y]
 
 
-func _try_move(x: int, y: int) -> bool:
+func _try_move(x: int, y: int) -> void:
 	# if not _ref_DungeonBoard_is_inside_dungeon.call_func(x, y):
 	if not _ref_DungeonBoard.is_inside_dungeon(x, y):
 		emit_signal("pc_moved", "You cannot leave the map.")
-		return false
 	elif _ref_DungeonBoard.has_sprite(_new_GroupName.WALL, x, y):
 		emit_signal("pc_moved", "You bump into wall.")
-		return false
 	elif _ref_DungeonBoard.has_sprite(_new_GroupName.DWARF, x, y):
-		return get_node(PC_ATTACK).try_attack(_new_GroupName.DWARF, x, y)
+		set_process_unhandled_input(false)
+		get_node(PC_ATTACK).try_attack(_new_GroupName.DWARF, x, y)
+		# NOTE: Remove this line later and let PCAttack to end turn.
+		_ref_Schedule.end_turn()
 	else:
+		set_process_unhandled_input(false)
 		_pc.position = _new_ConvertCoord.index_to_vector(x, y)
-		return true
+		_ref_Schedule.end_turn()
