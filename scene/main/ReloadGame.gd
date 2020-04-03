@@ -12,3 +12,4 @@ func reload() -> void:
 	get_node(ROOT_NODE).add_child(new_scene)
 	get_tree().current_scene = new_scene
 	get_node(ROOT_NODE).remove_child(old_scene)
+	old_scene.queue_free()
