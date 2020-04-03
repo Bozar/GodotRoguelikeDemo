@@ -1,7 +1,7 @@
 extends "res://library/RootNodeTemplate.gd"
 
 
-const INIT: String = "InitWorld"
+const INIT_WORLD: String = "InitWorld"
 const PC_MOVE: String = "PCMove"
 const PC_ATTACK: String = "PCMove/PCAttack"
 const NPC: String = "EnemyAI"
@@ -14,7 +14,7 @@ const MODELINE: String = "MainGUI/MainHBox/Modeline"
 const SIGNAL_BIND: Array = [
 	[
 		"sprite_created", "_on_InitWorld_sprite_created",
-		INIT,
+		INIT_WORLD,
 		PC_MOVE, NPC, SCHEDULE, DUNGEON,
 	],
 	[
@@ -53,7 +53,7 @@ const NODE_REF: Array = [
 	[
 		"_ref_DungeonBoard",
 		DUNGEON,
-		PC_MOVE, PC_ATTACK, REMOVE,
+		PC_MOVE, PC_ATTACK, REMOVE, INIT_WORLD,
 	],
 	[
 		"_ref_Schedule",
