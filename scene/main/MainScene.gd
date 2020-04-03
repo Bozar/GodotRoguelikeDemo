@@ -42,6 +42,11 @@ const SIGNAL_BIND: Array = [
 		NODE_PC_MOVE,
 		NODE_MODELINE,
 	],
+	[
+		"pc_attacked", "_on_PCAttack_pc_attacked",
+		NODE_PC_ATTACK,
+		NODE_MODELINE,
+	],
 ]
 
 const NODE_REF: Array = [
@@ -53,7 +58,7 @@ const NODE_REF: Array = [
 	[
 		"_ref_Schedule",
 		NODE_SCHEDULE,
-		NODE_PC_MOVE, NODE_NPC,
+		NODE_PC_MOVE, NODE_NPC, NODE_PC_ATTACK,
 	],
 	[
 		"_ref_RemoveObject",

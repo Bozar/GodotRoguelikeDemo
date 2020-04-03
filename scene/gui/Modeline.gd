@@ -27,6 +27,10 @@ func _on_PCMove_pc_moved(message: String) -> void:
 	_set_text(message)
 
 
+func _on_PCAttack_pc_attacked(message: String) -> void:
+	_set_text(message)
+
+
 func _set_text(message: String) -> void:
 	text = message
 	_has_text = true

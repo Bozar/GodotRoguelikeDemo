@@ -76,9 +76,7 @@ func _try_move(x: int, y: int) -> void:
 		emit_signal("pc_moved", "You bump into wall.")
 	elif _ref_DungeonBoard.has_sprite(_new_GroupName.DWARF, x, y):
 		set_process_unhandled_input(false)
-		get_node(PC_ATTACK).try_attack(_new_GroupName.DWARF, x, y)
-		# NOTE: Remove this line later and let PCAttack to end turn.
-		_ref_Schedule.end_turn()
+		get_node(PC_ATTACK).attack(_new_GroupName.DWARF, x, y)
 	else:
 		set_process_unhandled_input(false)
 		_pc.position = _new_ConvertCoord.index_to_vector(x, y)
