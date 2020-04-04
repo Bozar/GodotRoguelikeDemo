@@ -46,9 +46,11 @@ func _init_dwarf() -> void:
 		x = _rng.randi_range(1, _new_DungeonSize.MAX_X - 1)
 		y = _rng.randi_range(1, _new_DungeonSize.MAX_Y - 1)
 
-		if not _ref_DungeonBoard.has_sprite(_new_GroupName.WALL, x, y):
-			_create_sprite(Dwarf, _new_GroupName.DWARF, x, y)
-			dwarf -= 1
+		if _ref_DungeonBoard.has_sprite(_new_GroupName.WALL, x, y) \
+				or _ref_DungeonBoard.has_sprite(_new_GroupName.DWARF, x, y):
+			continue
+		_create_sprite(Dwarf, _new_GroupName.DWARF, x, y)
+		dwarf -= 1
 
 
 func _init_PC() -> void:
